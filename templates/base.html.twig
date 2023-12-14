@@ -4,6 +4,27 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+       
+   
+        <!-- Meta -->
+        <meta name="description" content="Responsive Bootstrap 4 Dashboard Template">
+        <meta name="author" content="ThemePixels">
+
+        <!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicon.png">
+
+        <title>DashForge Responsive Bootstrap 4 Dashboard Template</title>
+
+        <!-- vendor css -->
+        <link href="/lib/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+        <link href="/ionicons/css/ionicons.min.css" rel="stylesheet">
+        <link href="/lib/typicons.font/typicons.css" rel="stylesheet">
+        <link href="/lib/prismjs/themes/prism-vs.css" rel="stylesheet">
+        <link href="/lib/spectrum-colorpicker/spectrum.css" rel="stylesheet">
+
+        <!-- DashForge CSS -->
+        <link rel="stylesheet" href="/assets/css/dashforge.css">
+		<link rel="stylesheet" href="/assets/css/dashforge.demo.css">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
@@ -15,5 +36,14 @@
     </head>
     <body>
         {% block body %}{% endblock %}
+
+        <script src="/lib/jquery/jquery.min.js"></script>
+        <script src="/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="/lib/feather-icons/feather.min.js"></script>
+        <script src="/lib/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+        <script src="/lib/prismjs/prism.js"></script>
+        <script src="/lib/spectrum-colorpicker/spectrum.js"></script>
+
+        <script src="/assets/js/dashforge.js"></script>
     </body>
 </html>
