@@ -22,19 +22,28 @@ class GenerationController extends AbstractController
         $at= $entityManager->getRepository(AttesstationContent::class)->findBy(['attestation'=>1],["priority"=>'ASC']);
         
      
+        $nom = "xxxxxxxxx";
+        $prenom = "xxxxxxxxx";
+        $date = "xxxxxxxxx";
+        $lieu = "xxxxxxxxx";
+        $adresse = "xxxxxxxxx";
+        $societe = "xxxxxxxxx";
+        $siege = "xxxxxxxxx";
+        $no = "xxxxxxxxx";
         $section = $phpWord->addSection(['marginTop' => 600]);
+        $section->getStyle()->setPageNumberingStart(1);
         $section->addImage(
-            '/home/alass/PERSO/link-generate/src/Controller/Image1.png',
+            dirname(__DIR__).'/Controller/Image1.png',
             array(
-                'width'         => 450,
-                'height'        => 84,
+                'width'         => 350,
+                'height'        => 64,
                 'marginTop'     => -100,
                 'marginLeft'    => -1,
                 'wrappingStyle' => 'behind'
             )
         );
         
-        foreach($at as $d)
+        foreach($at as $k=>$d)
         {
             if($d->getLabelle() == "modules")
             {
@@ -49,22 +58,45 @@ class GenerationController extends AbstractController
             {
                 
                 $section->addText(
-                   "Nom : <br/>Prénom : <br/>Né(e) le : <br/>Lieu de naissance : <br/>Adresse : <br/><br/><br/>Société immatriculée au R.C.S : <br/>Adresse du siège : <br/><br/><br/>No d’identification : <br/>
-                    ",
+                   "Nom :                       ".$nom."<br/>".
+                   "Prénom :                  ".$prenom."<br/>".
+                   "Né(e) le :                  ".$date."<br/>".
+                   "Lieu de naissance :  ".$lieu."<br/>".
+                   "Adresse :                  ".$adresse."<br/><br/><br/>".
+                   "Société immatriculée au R.C.S : ".$societe."<br/>".
+                   "Adresse du siège : ".$siege."<br/><br/><br/>".
+                   "No d’identification : ".$no."<br/>",
                     json_decode($d->getFontStyle(),true)
                 );
                 
             }
-
+            $phpWord->addParagraphStyle('cfd'.$k,json_decode($d->getParagraphStyle(),true));
             $section->addText(
                 $d->getText(),
-                json_decode($d->getFontStyle(),true)
+                json_decode($d->getFontStyle(),true),
+                'cfd'.$k
             );
 
         }
 
-
-
+        $section->addImage(
+            dirname(__DIR__).'/Controller/Image.png',
+            array(
+                'width'         => 200,
+                'height'        => 64,
+                'marginTop'     => -100,
+                'marginLeft'    => -1,
+                'wrappingStyle' => 'behind'
+            )
+        );
+        
+        $foot = $section->addFooter();
+        $phpWord->addParagraphStyle('footer',["align"=>'center']);
+        $foot->addText("CEFIOB Centre de Formation Banque Finance Assurance Immobilier".
+        "91 Rue du Faubourg Saint-Honoré, 75008 Paris contact@cefiob.fr   https://cefiob.fr".
+        "RCS Paris 753 159 490 00022 Centre de formation enregistré auprès de la DIRECCTE sous le N° 11754922175",
+    
+        ["size"=>10],'footer');
         // Saving the document as OOXML file...
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
         $objWriter->save(uniqid().'.docx');

@@ -34,6 +34,9 @@ class AttesstationContent
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $labelle;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $paragraph_style;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -119,6 +122,18 @@ class AttesstationContent
     public function setLabelle(?string $labelle): self
     {
         $this->labelle = $labelle;
+
+        return $this;
+    }
+
+    public function getParagraphStyle(): ?string
+    {
+        return $this->paragraph_style;
+    }
+
+    public function setParagraphStyle(?string $paragraph_style): self
+    {
+        $this->paragraph_style = $paragraph_style;
 
         return $this;
     }
