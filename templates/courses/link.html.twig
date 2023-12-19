@@ -12,6 +12,17 @@
 
     <div class="content content-components">
         <div class="container">
+        
+
+      
+        
+        
+        
+
+      
+
+      </div><!-- container -->
+        <div class="container">
 
             <div data-label="Fiche" class="df-example demo-forms">
                 <div class="row row-sm">
@@ -21,8 +32,10 @@
                     <div class="col-sm-6 my-1">
                         <input type="text" class="form-control" placeholder="Prénom">
                     </div>
-                    <div class="wd-md-50p">
-                        <input type="text" class="form-control hasDatepicker" placeholder="Choose date" id="datepicker4">
+                    <div class="col-sm-6 my-1">
+                        
+                        <input type="text" class="form-control" placeholder="Choose date" id="datepicker5">
+                        
                     </div>
                     <div class="col-sm-6 my-1">
                         <input type="text" class="form-control" placeholder="Adresse">
@@ -44,68 +57,6 @@
             </div>
         </div>
     </div>
-    <!-- content -->
-    <script src="https://jqueryui.com/datepicker/"></script>
-    <script>
-        $(function(){
-            'use strict'
-
-            $('#datepicker1').datepicker();
-
-            $('#datepicker2').datepicker({
-                showOtherMonths: true,
-                selectOtherMonths: true
-            });
-
-            $('#datepicker3').datepicker({
-                showOtherMonths: true,
-                selectOtherMonths: true,
-                changeMonth: true,
-                changeYear: true
-            });
-
-            $('#datepicker4').datepicker();
-
-            $('#datepicker5').datepicker({
-                showButtonPanel: true
-            });
-
-            $('#datepicker6').datepicker({
-                numberOfMonths: 2
-            });
-
-            var dateFormat = 'mm/dd/yy',
-                from = $('#dateFrom')
-                    .datepicker({
-                        defaultDate: '+1w',
-                        numberOfMonths: 2
-                    })
-                    .on('change', function() {
-                        to.datepicker('option','minDate', getDate( this ) );
-                    }),
-                to = $('#dateTo').datepicker({
-                    defaultDate: '+1w',
-                    numberOfMonths: 2
-                })
-                    .on('change', function() {
-                        from.datepicker('option','maxDate', getDate( this ) );
-                    });
-
-            function getDate( element ) {
-                var date;
-                try {
-                    date = $.datepicker.parseDate( dateFormat, element.value );
-                } catch( error ) {
-                    date = null;
-                }
-
-                return date;
-            }
-
-
-        });
-    </script>
-    <script>
-        $('#datepicker1').datepicker();
-    </script>
+    
 {% endblock %}
+
