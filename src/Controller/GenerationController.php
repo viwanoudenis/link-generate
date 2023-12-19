@@ -12,8 +12,10 @@ use Symfony\Component\Mime\Email;
 use Doctrine\ORM\EntityManagerInterface;
 class GenerationController extends AbstractController
 {
-    #[Route('/generation', name: 'app_generation')]
-    public function index(EntityManagerInterface $entityManager,): Response
+    /**
+     * @Route("/generation", name="app_generation", methods={"POST"})
+     */
+    public function index(EntityManagerInterface $entityManager): Response
     {
         $phpWord = new \PhpOffice\PhpWord\PhpWord();
         /* Note: any element you append to a document must reside inside of a Section. */

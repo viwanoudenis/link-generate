@@ -24,8 +24,8 @@
                     <div class="col-sm-6">
                         <input type="text" class="form-control" placeholder="Né(e) le ">
                     </div>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" placeholder="Lieu de naissance  ">
+                    <div class="wd-md-50p">
+                        <input type="text" class="form-control hasDatepicker" placeholder="Choose date" id="datepicker4">
                     </div>
                     <div class="col-sm-6">
                         <input type="text" class="form-control" placeholder="Adresse">
@@ -43,5 +43,8 @@
             </div>
         </div>
     </div>
+    <script>
+        $('#datepicker1').datepicker();
+    </script>
     <!-- content -->
 {% endblock %}
