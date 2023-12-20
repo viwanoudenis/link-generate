@@ -2,10 +2,3 @@ framework:
     mailer:
         dsn: '%env(MAILER_DSN)%'
 
-swiftmailer:
-    transport: smtp
-    host: 'mail.cefiob-attestation.fr'
-    port: '465'
-    encryption: 'tls' # ssl or tls
-    username: 'bash@cefiob-attestation.fr'
-    password: 'S4lxq}?2xXWZ'
