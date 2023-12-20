@@ -5,36 +5,59 @@ namespace App\Entity;
 use App\Repository\AttesstationContentRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: AttesstationContentRepository::class)]
+/**
+ * @ORM\Entity(repositoryClass=AttesstationContentRepository::class)
+ */
 class AttesstationContent
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
+   /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
     private $id;
 
-    #[ORM\Column(type: 'text', nullable: true)]
+
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
     private $text;
 
-    #[ORM\Column(type: 'array', nullable: true)]
+   /**
+     * @ORM\Column(type="array", nullable=true)
+     */
     private $style = [];
 
-    #[ORM\Column(type: 'integer', nullable: true)]
+      /**
+      * @ORM\Column(type="integer", nullable=true)
+      */
     private $priority;
 
-    #[ORM\ManyToOne(targetEntity: Attesstation::class, inversedBy: 'attesstationContents')]
+    /**
+     * @ORM\ManyToOne(targetEntity=Attesstation::class, inversedBy="attestationContents")
+     */
     private $attestation;
 
-    #[ORM\Column(type: 'text', nullable: true)]
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
     private $font_style;
 
-    #[ORM\Column(type: 'text', nullable: true)]
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
     private $modules;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
     private $labelle;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+
     private $paragraph_style;
 
     public function getId(): ?int

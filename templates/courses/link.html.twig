@@ -12,49 +12,42 @@
 
     <div class="content content-components">
         <div class="container">
-        
-
-      
-        
-        
-        
-
-      
 
       </div><!-- container -->
         <div class="container">
-
+            <form class="form-horizontal"   role="form" action="/generation" method="post" enctype="multipart/form-data">
             <div data-label="Fiche" class="df-example demo-forms">
                 <div class="row row-sm">
                     <div class="col-sm-6 my-1">
-                        <input type="text" class="form-control" placeholder="Nom">
+                        <input type="text" class="form-control" placeholder="Nom" name="nom">
                     </div>
                     <div class="col-sm-6 my-1">
-                        <input type="text" class="form-control" placeholder="Prénom">
+                        <input type="text" class="form-control" placeholder="Prénom" name="prenom">
                     </div>
                     <div class="col-sm-6 my-1">
                         
-                        <input type="text" class="form-control" placeholder="Choose date" id="datepicker5">
+                        <input type="text" class="form-control" placeholder="Choose date" id="datepicker5" name="naisssance">
                         
                     </div>
                     <div class="col-sm-6 my-1">
-                        <input type="text" class="form-control" placeholder="Adresse">
+                        <input type="text" class="form-control" placeholder="Lieu" name="lieu">
                     </div>
                     <div class="col-sm-6 my-1">
-                        <input type="text" class="form-control" placeholder="Adresse">
+                        <input type="text" class="form-control" placeholder="Adresse" name="adresse">
                     </div>
                     <div class="col-sm-6 my-1">
-                        <input type="text" class="form-control" placeholder="Société immatriculée au R.C.S ">
+                        <input type="text" class="form-control" placeholder="Société immatriculée au R.C.S " name="societe">
                     </div>
                     <div class="col-sm-6 my-1">
-                        <input type="text" class="form-control" placeholder="Adresse du siège ">
+                        <input type="text" class="form-control" placeholder="Adresse du siège " name="adresses_siege">
                     </div>
                     <div class="col-sm-6 my-1">
-                        <input type="text" class="form-control" placeholder="No d’identification ">
+                        <input type="text" class="form-control" placeholder="No d’identification" name="numero-identification">
                     </div>
                 </div>
-                <button type="button" class="btn btn-primary">Envoyer</button>
+                <button type="submit" class="btn btn-primary">Envoyer</button>
             </div>
+            </form>
         </div>
     </div>
     

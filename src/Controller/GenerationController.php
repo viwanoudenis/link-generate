@@ -6,6 +6,7 @@ use App\Entity\Attesstation;
 use App\Entity\AttesstationContent;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
@@ -15,23 +16,23 @@ class GenerationController extends AbstractController
     /**
      * @Route("/generation", name="app_generation", methods={"POST"})
      */
-    public function index(EntityManagerInterface $entityManager): Response
+    public function index(EntityManagerInterface $entityManager,MailerInterface $mailer): Response
     {
+
         $phpWord = new \PhpOffice\PhpWord\PhpWord();
         /* Note: any element you append to a document must reside inside of a Section. */
 
         // Adding an empty Section to the document...()
         $at= $entityManager->getRepository(AttesstationContent::class)->findBy(['attestation'=>1],["priority"=>'ASC']);
-        
-     
-        $nom = "xxxxxxxxx";
-        $prenom = "xxxxxxxxx";
-        $date = "xxxxxxxxx";
-        $lieu = "xxxxxxxxx";
-        $adresse = "xxxxxxxxx";
-        $societe = "xxxxxxxxx";
-        $siege = "xxxxxxxxx";
-        $no = "xxxxxxxxx";
+
+        $nom = $_POST['nom'];
+        $prenom = $_POST['prenom'];
+        $date = $_POST['naisssance'];
+        $lieu = $_POST['lieu'];
+        $adresse = $_POST['adresse'];
+        $societe = $_POST['societe'];
+        $siege = $_POST['adresses_siege'];
+        $no = $_POST['numero-identification'];
         $section = $phpWord->addSection(['marginTop' => 600]);
         $section->getStyle()->setPageNumberingStart(1);
         $section->addImage(
@@ -60,11 +61,11 @@ class GenerationController extends AbstractController
             {
                 
                 $section->addText(
-                   "Nom :                       ".$nom."<br/>".
-                   "Prénom :                  ".$prenom."<br/>".
-                   "Né(e) le :                  ".$date."<br/>".
-                   "Lieu de naissance :  ".$lieu."<br/>".
-                   "Adresse :                  ".$adresse."<br/><br/><br/>".
+                   "Nom : ".$nom."<br/>".
+                   "Prénom : ".$prenom."<br/>".
+                   "Né(e) le : ".$date."<br/>".
+                   "Lieu de naissance : ".$lieu."<br/>".
+                   "Adresse : ".$adresse."<br/><br/><br/>".
                    "Société immatriculée au R.C.S : ".$societe."<br/>".
                    "Adresse du siège : ".$siege."<br/><br/><br/>".
                    "No d’identification : ".$no."<br/>",
@@ -103,8 +104,18 @@ class GenerationController extends AbstractController
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
         $objWriter->save(uniqid().'.docx');
 
-        return $this->render('generation/index.html.twig', [
-            'controller_name' => 'GenerationController',
-        ]);
+        $email = (new Email())
+            ->from('de.stoorx@gmail.com')
+            ->to('denisnoudeke49@gmail.com')
+            ->subject('Subject of the email')
+            ->text('This is the text content of the email.')
+            ->attachFromPath(uniqid().'.docx')
+            ->html('<p>This is the HTML content of the email.</p>');
+
+        // Envoyer l'e-mail
+        $mailer->send($email);
+
+        return $this->redirect($this->generateUrl('app_home'));
+
     }
 }
