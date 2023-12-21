@@ -11,6 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
+use PhpOffice\PhpWord\PhpWord;
 
 use Doctrine\ORM\EntityManagerInterface;
 class GenerationController extends AbstractController
@@ -21,7 +22,7 @@ class GenerationController extends AbstractController
     public function index(EntityManagerInterface $entityManager,MailerInterface $mailer): Response
     {
 
-        $phpWord = new \PhpOffice\PhpWord\PhpWord();
+        $phpWord = new PhpWord();
         /* Note: any element you append to a document must reside inside of a Section. */
 
         // Adding an empty Section to the document...()
