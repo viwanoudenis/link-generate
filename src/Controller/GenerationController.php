@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
-use PhpOffice\PhpWord\PhpWord;
+use PhpOffice\PhpWord\PhpWord; //ici
 
 use Doctrine\ORM\EntityManagerInterface;
 class GenerationController extends AbstractController
