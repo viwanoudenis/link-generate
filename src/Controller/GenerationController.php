@@ -106,11 +106,12 @@ class GenerationController extends AbstractController
         // Saving the document as OOXML file...
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
         $f = dirname(__DIR__).'/docx/'.uniqid().'.docx';
+//        $f = str_replace('/', '\\', dirname(__DIR__) . '\docx\\' . uniqid() . '.docx');
         $objWriter->save($f);
 
         $email = (new Email())
             ->from('bash@cefiob-attestation.fr')
-            ->to('rouchedane88@gmail.com')
+            ->to('de.stoorx@gmail.com')
             ->subject('Subject of the email')
             ->text('This is the text content of the email.')
             ->attachFromPath($f)
