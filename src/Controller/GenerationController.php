@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
+
 use Doctrine\ORM\EntityManagerInterface;
 class GenerationController extends AbstractController
 {
@@ -102,19 +104,26 @@ class GenerationController extends AbstractController
         ["size"=>10],'footer');
         // Saving the document as OOXML file...
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
-        $objWriter->save(uniqid().'.docx');
+        $f = dirname(__DIR__).'/docx/'.uniqid().'.docx';
+        $objWriter->save($f);
 
         $email = (new Email())
-            ->from('de.stoorx@gmail.com')
-            ->to('denisnoudeke49@gmail.com')
+            ->from('bash@cefiob-attestation.fr')
+            ->to('rouchedane88@gmail.com')
             ->subject('Subject of the email')
             ->text('This is the text content of the email.')
-            ->attachFromPath(uniqid().'.docx')
+            ->attachFromPath($f)
             ->html('<p>This is the HTML content of the email.</p>');
 
         // Envoyer l'e-mail
-        $mailer->send($email);
-
+        try {
+            dd($mailer->send($email));
+        } catch (TransportExceptionInterface $e) {
+            // some error prevented the email sending; display an
+            // error message or try to resend the message
+            dd($e);
+        }
+        dd($f);
         return $this->redirect($this->generateUrl('app_home'));
 
     }
