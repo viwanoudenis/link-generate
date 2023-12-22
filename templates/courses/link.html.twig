@@ -6,7 +6,7 @@
     <header class="navbar navbar-header navbar-header-fixed">
         <a href="" id="sidebarMenuOpen" class="burger-menu"><i data-feather="arrow-left"></i></a>
         <div class="navbar-brand">
-            <a href="../index.html" class="df-logo">Cefi<span>ob</span></a>
+            <a href="#" class="df-logo">Cefi<span>ob</span></a>
         </div><!-- navbar-brand -->
     </header><!-- navbar -->
 
@@ -17,39 +17,93 @@
         <div class="container">
             <form class="form-horizontal"   role="form" action="/generation" method="post" enctype="multipart/form-data">
             <div data-label="Fiche" class="df-example demo-forms">
-                <div class="row row-sm">
+                <div class="row row-sm ">
                     <div class="col-sm-6 my-1">
                         <input type="text" class="form-control" placeholder="Nom" name="nom">
                     </div>
-                    <div class="col-sm-6 my-1">
+                    <div class="col-sm-6 my-1 ">
                         <input type="text" class="form-control" placeholder="Prénom" name="prenom">
                     </div>
                     <div class="col-sm-6 my-1">
                         
-                        <input type="text" class="form-control" placeholder="Choose date" id="datepicker5" name="naisssance">
+                        <input type="text" class="form-control" placeholder="Date de naissance" id="datepicker5" name="naisssance">
                         
                     </div>
-                    <div class="col-sm-6 my-1">
-                        <input type="text" class="form-control" placeholder="Lieu" name="lieu">
+                    <div class="col-sm-6 my-1 ">
+                        <input type="text" class="form-control" placeholder="Département de naissance" name="lieu">
                     </div>
-                    <div class="col-sm-6 my-1">
+                    <div class="col-sm-6 my-1 ">
                         <input type="text" class="form-control" placeholder="Adresse" name="adresse">
                     </div>
-                    <div class="col-sm-6 my-1">
+                    <div class="col-sm-6 my-1 specific-fields">
+                        <input type="text" class="form-control" placeholder="Adresse postale personnelle" name="postale">
+                    </div>
+                    <div class="col-sm-6 my-1 specific-fields">
                         <input type="text" class="form-control" placeholder="Société immatriculée au R.C.S " name="societe">
                     </div>
-                    <div class="col-sm-6 my-1">
+                    <div class="col-sm-6 my-1 specific-fields">
                         <input type="text" class="form-control" placeholder="Adresse du siège " name="adresses_siege">
                     </div>
-                    <div class="col-sm-6 my-1">
+                    <div class="col-sm-6 my-1 specific-fields">
                         <input type="text" class="form-control" placeholder="No d’identification" name="numero-identification">
                     </div>
+
+                    <div class="col-sm-6 my-1 specific-fields">
+                        <input type="text" class="form-control" placeholder="SIREN" name="siren">
+                    </div>
+
+                    <div class="col-sm-6 my-1 ">
+                        <input type="text" class="form-control" placeholder="email" name="email">
+                    </div>
+
+                    <div class="col-sm-6 my-1 specific-fields">
+                        <input type="text" class="form-control" placeholder="Lieu du SIREN" name="lieu-siren">
+                    </div>
+
+                    <div class="col-sm-6 my-1">
+
+                            <select class="form-control select2-no-search" id="formation-selector" name="formation">
+                                <option label="Choisir la formation"></option>
+                                <option value="1">Formation « Loi ALUR »</option>
+                                <option value="2">Formation réglementaire « DDA-IAS »</option>
+                                <option value="3">Formation « DCI-IOBSP » </option>
+                            </select>
+                    </div><!-- df-example -->
                 </div>
                 <button type="submit" class="btn btn-primary">Envoyer</button>
             </div>
             </form>
         </div>
     </div>
-    
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Sélectionnez la liste déroulante et les champs spécifiques
+            const formationSelect = document.querySelector('[name="formation"]');
+            const specificFields = document.querySelectorAll('.specific-fields');
+
+            // Fonction pour afficher ou masquer les champs en fonction de la sélection
+            function toggleFields() {
+                const isLoiSelected = formationSelect.value === '1';
+
+                // Affichez ou masquez les champs en conséquence
+                specificFields.forEach(function (field) {
+                    field.style.display = isLoiSelected ? 'block' : 'none';
+                });
+            }
+
+            // Écoutez les changements dans la liste déroulante
+            formationSelect.addEventListener('change', toggleFields);
+
+            // Déclenchez l'événement de changement initial pour configurer l'affichage initial
+            toggleFields();
+        });
+    </script>
+
+
+
+
+
 {% endblock %}
 
