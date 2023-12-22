@@ -13,10 +13,25 @@
     <div class="content content-components">
         <div class="container">
 
+            {% for flashMessage in app.session.flashbag.get('success') %}
+                <div class="alert alert-success">
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
+
       </div><!-- container -->
         <div class="container">
             <form class="form-horizontal"   role="form" action="/generation" method="post" enctype="multipart/form-data">
             <div data-label="Fiche" class="df-example demo-forms">
+                <div class="col-sm-12 my-1">
+
+                    <select class="form-control select2-no-search" id="formation-selector" name="formation">
+                        <option label="Choisir la formation"></option>
+                        <option value="1">Formation « Loi ALUR »</option>
+                        <option value="2">Formation réglementaire « DDA-IAS »</option>
+                        <option value="3">Formation « DCI-IOBSP » </option>
+                    </select>
+                </div>
                 <div class="row row-sm ">
                     <div class="col-sm-6 my-1">
                         <input type="text" class="form-control" placeholder="Nom" name="nom">
@@ -60,15 +75,7 @@
                         <input type="text" class="form-control" placeholder="Lieu du SIREN" name="lieu-siren">
                     </div>
 
-                    <div class="col-sm-6 my-1">
-
-                            <select class="form-control select2-no-search" id="formation-selector" name="formation">
-                                <option label="Choisir la formation"></option>
-                                <option value="1">Formation « Loi ALUR »</option>
-                                <option value="2">Formation réglementaire « DDA-IAS »</option>
-                                <option value="3">Formation « DCI-IOBSP » </option>
-                            </select>
-                    </div><!-- df-example -->
+                   <!-- df-example -->
                 </div>
                 <button type="submit" class="btn btn-primary">Envoyer</button>
             </div>

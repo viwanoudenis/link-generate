@@ -154,6 +154,7 @@ class GenerationController extends AbstractController
             // error message or try to resend the message
 
         }
+        $this->addFlash('success', 'Votre demande a été envoyée avec succès!');
         return $this->redirect($this->generateUrl('app_home'));
 
     }
